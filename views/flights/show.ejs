@@ -1,22 +1,54 @@
 <%- include('../partials/header') %>
-<h1>Ticket Details</h1>
+<h1>Flights Details</h1>
 
+<ul>
+    <li> Airline: <%= flight.airline %> </li>
+    <li> Airport: <%= flight.airport %> </li>
+    <li> Flgith Number: <%= flight.flightNo %> </li>
+    <li> Departure Time: <%= flight.departs %> </li>
+</ul>
+<h2>Destination</h2>
+<a href="/flights/<%= flights._id %>/ticket/new" <%- title === 'Add Ticket' ? 'class="active"' : '' %>>Add a Ticket</a>
+<h3>Tickets:</h3>
+  <div>
+    <table>
+      <tbody>
+        <% tickets.forEach((t) => { %>
+          <tr>
+            <td>Seat: <%= t.seat %></td>
+            <td>Price: <%= t.price %></td>
+          </tr>
+          <% }); %>
+      </tbody>
+    </table>
+  </div>
+<br/><br/>
+<form id="add-destination-form" method="POST" action="/flights/<%= flights._id %>/destinations">
+    <label>Airport:</label>
+    <select name="airport">
+        <option selected value="DEN">DEN</option>
+        <option value="AUS">AUS</option>
+        <option value="DFW">DFW</option>
+        <option value="LAX">LAX</option>
+        <option value="SAN">SAN</option>
+    </select>
+    <label>Arrival<input type="datetime-local" name="arrival"/></label>
+    <button type="submit" value="Add Destination"> Add Destination</button>
+</form>
 <table>
-    <thead>
-        <tr>
-            <th>Airline</th>
-            <th>Airport</th>
-            <th>Flight No</th>
-            <th>Departs</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td><%= flight.airline %></td>
-            <td><%= flight.airport %></td>
-            <td><%= flight.flightNo %></td>
-            <td><%= flight.departs %></td>
-        </tr>
-    </tbody>
-</table>
+	<thead>
+		<tr>
+			<th>Airport</th>
+			<th>Arrival</th>
+		</tr>
+	</thead>
+	<tbody>
+		<% flights.destination.forEach(function(destination) { %>
+		<tr>
+			<td><%= destination.airport %></td>
+			<td><%= destination.arrival %></td>
+		</tr>
+		<% }); %>
+    </table>
+
 <%- include('../partials/footer') %>
