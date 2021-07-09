@@ -47,6 +47,12 @@
     <h3>Tickets:</h3>
         <div>
             <table>
+                <thead>
+                    <tr>
+                        <th>seat</th>
+                        <th>price</th>
+                    </tr>
+                </thead>
                 <tbody>
                     <% ticket.forEach((t) => { %>
                         <tr>
@@ -55,8 +61,8 @@
                         </tr>
                     <% }); %>
                 </tbody>
-        </table>
-    </div>
+            </table>
+        </div>
 <a href="/flights/<%= flight._id %>/tickets/new" <%- title === 'Add Ticket' ? 'class="active"' : '' %>>Add a Ticket</a>
 </section>
 
