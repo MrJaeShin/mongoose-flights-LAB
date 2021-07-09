@@ -2,11 +2,10 @@ const Flight = require('../models/flight');
 
 module.exports = {
     create,
+    sort,
 };
 
 function create(req, res) {
-    if (!req.body.arrival) delete req.body.arrival;
-
     Flight.findById(req.params.id, function(err, flight) {
         flight.destinations.push(req.body);
         flight.save(function(err) {
