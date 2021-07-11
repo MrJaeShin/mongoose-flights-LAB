@@ -13,7 +13,7 @@
 <section>
     <h3>Destination</h3>
     <form id="add-destination-form" method="POST" action="/flights/<%= flight._id %>/destinations">
-        <label>Airport:</label>
+        <label>Airport: </label>
             <select name="airport">
                 <option value="n/a">N/A</option>
                 <option value="DEN">DEN</option>
@@ -22,21 +22,23 @@
                 <option value="LAX">LAX</option>
                 <option value="SAN">SAN</option>
             </select>
-        <label>Arrival<input type="datetime-local" name="arrival"/></label>
-        <button type="submit" value="Add Destination"> Add Destination</button>
-    </form>
+        <label>Arrival Time: </label>
+        <input type="datetime-local" name="arrival"/>
+        <input type="submit" value="Add Destination"/>
+    </form></br></br>
+
     <table>    
         <thead>
             <tr>
-                <th>Airport</th></br>
+                <th>Airport</th>
 		        <th>Arrival</th>
 	        </tr>
         </thead>
 	    <tbody>
-            <% flight.destinations.forEach(function(destination) { %>
+            <% flight.destinations.forEach(function(d) { %>
                 <tr>
-                    <td><%= destination.airport %></td>
-                    <td><%= destination.arrival %></td>
+                    <td><%= d.airport %></td>
+                    <td><%= d.arrival %></td>
                 </tr>
             <% }); %>
         </tbody>
@@ -45,6 +47,7 @@
 
 <section>
     <h3>Tickets:</h3>
+    <a href="/flights/<%=flight._id%>/tickets/new">Add a Ticket</a>
         <div>
             <table>
                 <thead>
@@ -54,16 +57,15 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <% ticket.forEach((t) => { %>
+                    <% tickets.forEach((tickets) => { %>
                         <tr>
-                            <td>Seat: <%= t.seat %></td>
-                            <td>Price: <%= t.price %></td>
+                            <td>Seat: <%= tickets.seat %></td>
+                            <td>Price: <%= tickets.price %></td>
                         </tr>
                     <% }); %>
                 </tbody>
             </table>
         </div>
-<a href="/flights/<%= flight._id %>/tickets/new" <%- title === 'Add Ticket' ? 'class="active"' : '' %>>Add a Ticket</a>
 </section>
 
 <%- include('../partials/footer') %>

@@ -1,5 +1,5 @@
 const Flight = require('../models/flight');
-const Tickets = require('../models/ticket');
+const Ticket = require('../models/ticket');
 
 module.exports = {
     new: newTicket,
@@ -9,7 +9,7 @@ module.exports = {
 function newTicket(req, res) {
     res.render('tickets/new', {
         title: 'Add Ticket',
-        flight: req.params.id,
+        flights: req.params.id,
     })
 };
 

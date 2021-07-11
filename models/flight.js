@@ -30,7 +30,6 @@ const flightSchema = new Schema({
         type: Date,
     },
     destinations: [destinationSchema],
-    tickets: [{type: Schema.Types.ObjectId, ref: 'Ticket'}]
 });
 
 module.exports = mongoose.model('Flight', flightSchema);
